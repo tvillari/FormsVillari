@@ -1,0 +1,29 @@
+<form [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input type="text" formControlName="nombre" />
+    <div *ngIf="f.nombre.invalid && (f.nombre.dirty || f.nombre.touched)">
+      <div *ngIf="f.nombre.errors.required">Este campo es requerido</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="correo">Correo:</label>
+    <input type="email" formControlName="correo" />
+    <div *ngIf="f.correo.invalid && (f.correo.dirty || f.correo.touched)">
+      <div *ngIf="f.correo.errors.required">Este campo es requerido</div>
+      <div *ngIf="f.correo.errors.email">Correo electrónico inválido</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="edad">Edad:</label>
+    <input type="number" formControlName="edad" />
+    <div *ngIf="f.edad.invalid && (f.edad.dirty || f.edad.touched)">
+      <div *ngIf="f.edad.errors.required">Este campo es requerido</div>
+      <div *ngIf="f.edad.errors.min">La edad mínima es 18</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="miFormulario.invalid">Enviar</button>
+</form>
